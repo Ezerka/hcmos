@@ -2,7 +2,7 @@ import React from 'react';
 // import { useAuth0 } from "../auth/withAuth0";
 // import Loading from "../Loading";
 import LogInForm from './LogInForm';
-import logo from '../../../shared/img/logo/logo.svg';
+import logo from '../../../images/adani.png';
 
 const LoginCard = () => {
   // const { loading } = useAuth0();
@@ -22,7 +22,7 @@ const LoginCard = () => {
             <span className="account__logo" />
           </h3>
         </div>
-        <LogInForm onSubmin form="log_in_form" />
+        <LogInForm onSubmit form="log_in_form" />
       </div>
     </div>
   );
