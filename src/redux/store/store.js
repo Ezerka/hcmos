@@ -3,7 +3,6 @@ import { reducer as form } from 'redux-form';
 import { connectRouter } from 'connected-react-router';
 import middleware, { history, sagaMiddleware } from './middleware';
 import { firebaseReducer as firebase } from 'react-redux-firebase';
-
 import {
   cryptoTable,
   rtl,
@@ -28,6 +27,7 @@ const reducers = {
   rtl,
   cryptoTable
 };
+
 const store = createStore(combineReducers(reducers), {}, middleware);
 sagaMiddleware.run(appSagas);
 export default store;

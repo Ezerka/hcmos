@@ -6,20 +6,25 @@ import logo from '../../../images/adani.png';
 import * as firebase from 'firebase';
 import { useDispatch } from 'react-redux';
 import { history } from '../../../redux/store';
-import { auth, authError } from '../../../redux/actions/authActions';
+import {
+  auth,
+  authError,
+  loginSuccess
+} from '../../../redux/actions/authActions';
 
 const LoginCard = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
 
   const onSubmitFireBase = ({ username, password }) => {
+    event.preventDefault();
     console.log(username, password);
     setError('');
     firebase
       .auth()
       .signInWithEmailAndPassword(username, password)
       .then(res => {
-        dispatch(auth({ name: res.user.email }));
+        dispatch(auth({ name: res.user.email, uid: res.user.uid }));
         history.push('/home');
       })
       .catch(error => {
