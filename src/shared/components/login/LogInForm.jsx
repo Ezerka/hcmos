@@ -9,6 +9,21 @@ import PropTypes from 'prop-types';
 import * as firebase from 'firebase/app';
 import { Alert, Button } from 'reactstrap';
 import renderCheckBoxField from '../form/CheckBox';
+import validate from '../../../containers/Form/FormValidation/components/validate';
+
+const renderField = ({
+  input,
+  placeholder,
+  type,
+  meta: { touched, error }
+}) => (
+  <div className="form__form-group-input-wrap">
+    <input {...input} placeholder={placeholder} type={type} />
+    {touched && error && (
+      <span className="form__form-group-error">{error}</span>
+    )}
+  </div>
+);
 
 class LogInForm extends PureComponent {
   static propTypes = {
@@ -23,7 +38,7 @@ class LogInForm extends PureComponent {
   static defaultProps = {
     errorMessage: '',
     errorMsg: '',
-    fieldUser: 'Username',
+    fieldUser: 'Email',
     typeFieldUser: 'text'
   };
 
@@ -60,8 +75,8 @@ class LogInForm extends PureComponent {
               <AccountOutlineIcon />
             </div>
             <Field
-              name="username"
-              component="input"
+              name="email"
+              component={renderField}
               type={typeFieldUser}
               placeholder={fieldUser}
             />
@@ -75,7 +90,7 @@ class LogInForm extends PureComponent {
             </div>
             <Field
               name="password"
-              component="input"
+              component={renderField}
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
             />
@@ -121,4 +136,9 @@ class LogInForm extends PureComponent {
 
 export default connect(state => ({
   errorMsg: state.user.error
-}))(reduxForm()(withRouter(LogInForm)));
+}))(
+  reduxForm({
+    name: 'the_login_form',
+    validate
+  })(withRouter(LogInForm))
+);

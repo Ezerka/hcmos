@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SidebarLink from './SidebarLink';
 import SidebarCategory from './SidebarCategory';
+import { connect } from 'react-redux';
+import { signOut } from '../../../redux/actions/authActions';
 
 class SidebarContent extends Component {
   static propTypes = {
@@ -14,6 +16,7 @@ class SidebarContent extends Component {
   };
 
   render() {
+    const { signOut } = this.props;
     return (
       <div className="sidebar__content">
         <ul className="sidebar__block">
@@ -76,11 +79,21 @@ class SidebarContent extends Component {
         </ul>
 
         <ul className="sidebar__block">
-          <SidebarLink title="Log Out" icon="exit" route="/login" />
+          <SidebarLink
+            title="Log Out"
+            icon="exit"
+            route="/login"
+            onClick={signOut}
+          />
         </ul>
       </div>
     );
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => dispatch(signOut())
+  };
+};
 
-export default SidebarContent;
+export default connect(null, mapDispatchToProps)(SidebarContent);

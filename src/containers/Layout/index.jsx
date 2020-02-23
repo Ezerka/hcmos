@@ -1,6 +1,6 @@
 /* eslint-disable no-return-assign */
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -42,7 +42,9 @@ class Layout extends Component {
       layout: true,
       'layout--collapse': sidebar.collapse
     });
-
+    if (!user.uid) {
+      return <Redirect to={'/login'} />;
+    }
     return (
       <div className={layoutClass}>
         <Topbar

@@ -13,8 +13,9 @@ const FormValidation = ({ t }) => (
     <Row>
       <Col md={12}>
         <h3 className="page-title">{t('forms.from_validation.title')}</h3>
-        <h3 className="page-subhead subhead">Use this elements, if you want to show some hints or additional
-              information
+        <h3 className="page-subhead subhead">
+          Use this elements, if you want to show some hints or additional
+          information
         </h3>
       </Col>
     </Row>
@@ -28,7 +29,7 @@ const FormValidation = ({ t }) => (
 );
 
 FormValidation.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(FormValidation);
