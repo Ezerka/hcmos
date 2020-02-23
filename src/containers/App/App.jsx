@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next';
 import * as firebase from 'firebase/app';
@@ -9,24 +8,22 @@ import { hot } from 'react-hot-loader';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../scss/app.scss';
 import Router from './Router';
-import store from './store';
 import ScrollToTop from './ScrollToTop';
 import { config as i18nextConfig } from '../../translations';
 import firebaseConfig from '../../config/firebase';
 import Auth0Provider from '../../shared/components/auth/withAuth0';
 import Loading from '../../shared/components/Loading';
 import auth0Config from '../../config/auth0';
+import { ConnectedRouter } from 'connected-react-router';
+import store, { history } from '../../redux/store';
 
 i18next.init(i18nextConfig);
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      loaded: false
-    };
-  }
+  state = {
+    loading: true,
+    loaded: false
+  };
 
   componentDidMount() {
     window.addEventListener('load', () => {
@@ -57,7 +54,7 @@ class App extends Component {
           returnTo={`${window.location.origin}/home`}
           onRedirectCallback={this.onRedirectCallbackAuth0}
         >
-          <HashRouter basename="/">
+          <ConnectedRouter history={history}>
             <I18nextProvider i18n={i18next}>
               <ScrollToTop>
                 <>
@@ -68,7 +65,7 @@ class App extends Component {
                 </>
               </ScrollToTop>
             </I18nextProvider>
-          </HashRouter>
+          </ConnectedRouter>
         </Auth0Provider>
       </Provider>
     );
