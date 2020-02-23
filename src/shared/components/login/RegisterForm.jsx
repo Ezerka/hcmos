@@ -6,6 +6,21 @@ import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import MailRuIcon from 'mdi-react/MailRuIcon';
 import { Button, Alert } from 'reactstrap';
 import PropTypes from 'prop-types';
+import validate from '../../../containers/Form/FormValidation/components/validate';
+
+const renderField = ({
+  input,
+  placeholder,
+  type,
+  meta: { touched, error }
+}) => (
+  <div className="form__form-group-input-wrap">
+    <input {...input} placeholder={placeholder} type={type} />
+    {touched && error && (
+      <span className="form__form-group-error">{error}</span>
+    )}
+  </div>
+);
 
 class RegisterForm extends PureComponent {
   static propTypes = {
@@ -17,14 +32,9 @@ class RegisterForm extends PureComponent {
     errorMessage: ''
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showPassword: false
-    };
-
-    this.showPassword = this.showPassword.bind(this);
-  }
+  state = {
+    showPassword: false
+  };
 
   showPassword(e) {
     e.preventDefault();
@@ -48,7 +58,7 @@ class RegisterForm extends PureComponent {
             </div>
             <Field
               name="username"
-              component="input"
+              component={renderField}
               type="text"
               placeholder="Name"
             />
@@ -62,7 +72,7 @@ class RegisterForm extends PureComponent {
             </div>
             <Field
               name="email"
-              component="input"
+              component={renderField}
               type="email"
               placeholder="example@mail.com"
               required
@@ -77,7 +87,7 @@ class RegisterForm extends PureComponent {
             </div>
             <Field
               name="password"
-              component="input"
+              component={renderField}
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               required
@@ -104,5 +114,6 @@ class RegisterForm extends PureComponent {
 }
 
 export default reduxForm({
-  form: 'register_form' // a unique identifier for this form
+  form: 'register_form',
+  validate // a unique identifier for this form
 })(RegisterForm);
