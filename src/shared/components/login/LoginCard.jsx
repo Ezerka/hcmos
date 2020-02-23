@@ -16,13 +16,14 @@ const LoginCard = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
 
-  const onSubmitFireBase = ({ username, password }) => {
+  const onSubmitFireBase = ({ email, password }) => {
+    console.log(email, '---------------', password);
     event.preventDefault();
-    console.log(username, password);
+    console.log(email, password);
     setError('');
     firebase
       .auth()
-      .signInWithEmailAndPassword(username, password)
+      .signInWithEmailAndPassword(email, password)
       .then(res => {
         dispatch(auth({ name: res.user.email, uid: res.user.uid }));
         history.push('/home');

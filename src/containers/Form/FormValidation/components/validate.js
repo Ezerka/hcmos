@@ -17,8 +17,6 @@ const validate = (values) => {
   }
   if (!values.password) {
     errors.password = 'Password field shouldn’t be empty';
-  } else if (values.password !== 'dragon') {
-    errors.password = 'The password is incorrect';
   }
   if (!values.select) {
     errors.select = 'Please select the option';
