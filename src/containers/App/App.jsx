@@ -5,7 +5,6 @@ import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { hot } from 'react-hot-loader';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../scss/app.scss';
