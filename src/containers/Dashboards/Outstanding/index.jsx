@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 
-class HallTicketGeneration extends Component {
+class OutstandingDashboard extends Component {
   render() {
     return (
       <div>
         <Container className="dashboard">
           <Row>
             <Col md={12}>
-              <h3 className="page-title">Hall Ticket Page</h3>
+              <h3 className="page-title">Current Outstanding</h3>
             </Col>
           </Row>
         </Container>
@@ -17,4 +17,4 @@ class HallTicketGeneration extends Component {
   }
 }
 
-export default HallTicketGeneration;
+export default OutstandingDashboard;

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 
-class PaymentHistory extends Component {
+class ResolvedIssues extends Component {
   render() {
     return (
       <div>
         <Container className="dashboard">
           <Row>
             <Col md={12}>
-              <h3 className="page-title">Payment History</h3>
+              <h3 className="page-title">Resolved Issues</h3>
             </Col>
           </Row>
         </Container>
@@ -17,4 +17,4 @@ class PaymentHistory extends Component {
   }
 }
 
-export default PaymentHistory;
+export default ResolvedIssues;

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 
-class FeeDashboard extends Component {
+class PaymentDues extends React.Component {
   render() {
     return (
       <div>
         <Container className="dashboard">
           <Row>
             <Col md={12}>
-              <h3 className="page-title">Fee</h3>
+              <h3 className="page-title">Payment Dues</h3>
             </Col>
           </Row>
         </Container>
@@ -16,5 +16,4 @@ class FeeDashboard extends Component {
     );
   }
 }
-
-export default FeeDashboard;
+export default PaymentDues;

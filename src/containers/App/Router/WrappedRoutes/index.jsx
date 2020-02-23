@@ -3,14 +3,15 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from '../../../Layout/index';
 
 import HomeDashboard from '../../../Dashboards/Home/index';
-import FeeDashboard from '../../../Dashboards/Fee';
-import LibraryDashboard from '../../../Dashboards/Library';
-import HallTicketGeneration from '../../../Dashboards/Examination/HallTicketGeneration';
-import ExamSeating from '../../../Dashboards/Examination/ExamSeatArrangement';
-import ProfessorsDashboard from '../../../Dashboards/Professors';
-import ClassroomDashboard from '../../../Dashboards/Classroom';
-import AttendanceDashboard from '../../../Dashboards/Attendance';
-import ResultsDashboard from '../../../Dashboards/Results';
+import OutstandingDashboard from '../../../Dashboards/Outstanding';
+import ResolvedIssues from '../../../Dashboards/Issues/ResolvedIssues';
+import PendingIssues from '../../../Dashboards/Issues/PendingIssues';
+import PaymentDues from '../../../Dashboards/Payment/Dues';
+
+import PaymentHistory from '../../../Dashboards/Payment/History';
+import PendingInvoices from '../../../Dashboards/Invoices/PendingInvoices';
+import ResolvedInvoices from '../../../Dashboards/Invoices/ResolvedInvoices';
+import Wallet from '../../../Dashboards/Wallet';
 
 export default () => (
   <div>
@@ -18,17 +19,14 @@ export default () => (
     <div className="container__wrap">
       <Switch>
         <Route path="/home" component={HomeDashboard} />
-        <Route path={'/fee'} component={FeeDashboard} />
-        <Route path={'/library'} component={LibraryDashboard} />
-        <Route path={'/professors'} component={ProfessorsDashboard} />
-        <Route
-          path={'/examination/hallticket'}
-          component={HallTicketGeneration}
-        />
-        <Route path={'/examination/seating'} component={ExamSeating} />
-        <Route path={'/attendance'} component={AttendanceDashboard} />
-        <Route path={'/results'} component={ResultsDashboard} />
-        <Route path={'/classroom'} component={ClassroomDashboard} />
+        <Route path={'/outstanding'} component={OutstandingDashboard} />
+        <Route path={'/payment/dues'} component={PaymentDues} />
+        <Route path={'/payment/history'} component={PaymentHistory} />
+        <Route path={'/invoices/pending'} component={PendingInvoices} />
+        <Route path={'/invoices/resolved'} component={ResolvedInvoices} />
+        <Route path={'/issues/resolved'} component={ResolvedIssues} />
+        <Route path={'/issues/pending'} component={PendingIssues} />
+        <Route path={'/wallet'} component={Wallet} />
         <Redirect from={'*'} to={'/404'} />
       </Switch>
     </div>

@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { ExamsTable, NewExamForm } from './components';
 
-const ExamSeating = () => {
+const PendingInvoices = () => {
   const [isFormOpen, setFormDialog] = useState(false);
   const toggleNewExamForm = () => {
     setFormDialog(!isFormOpen);
@@ -14,9 +14,9 @@ const ExamSeating = () => {
       <Container className="dashboard">
         <Row style={{ paddingBottom: '15px' }}>
           <Col sm={6} md={8} lg={10} xl={10}>
-            <h3 className="page-title">Seating Arrangement</h3>
+            <h3 className="page-title">Pending Invoices</h3>
             <h3 className="page-subhead subhead">
-              Here, we can create new seating arrangements
+              Here, we have all the pending issues for the system
             </h3>
           </Col>
           <Col sm={6} md={4} lg={2} xl={2}>
@@ -30,13 +30,9 @@ const ExamSeating = () => {
             </Button>
           </Col>
         </Row>
-        <Row>
-          <ExamsTable />
-        </Row>
       </Container>
-      <NewExamForm open={isFormOpen} toggleDialog={toggleNewExamForm} />
     </div>
   );
 };
 
-export default ExamSeating;
+export default PendingInvoices;

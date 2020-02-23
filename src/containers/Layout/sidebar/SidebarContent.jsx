@@ -25,52 +25,52 @@ class SidebarContent extends Component {
           />
 
           <SidebarLink
-            title={'Fee'}
+            title={'Current Outstandings'}
             icon={'cart'}
-            route={'/fee'}
+            route={'/outstanding'}
             onClick={this.hideSidebar}
           />
           <SidebarLink
-            title={'Professors'}
+            title={'Payment Dues'}
             icon={'user'}
-            route={'/professors'}
+            route={'/payment/dues'}
             onClick={this.hideSidebar}
           />
           <SidebarLink
-            title={'Library'}
-            icon={'book'}
-            route={'/library'}
+            title={'Payment History'}
+            icon={'license'}
+            route={'/payment/history'}
             onClick={this.hideSidebar}
           />
-
-          <SidebarCategory title="Examination" icon="layers">
+          <SidebarCategory title={'Invoices'} icon={'layers'}>
             <SidebarLink
-              title={'Hall Ticket Generation'}
-              route={'/examination/hallticket'}
+              title={'Pending Invoices'}
+              route={'/invoices/pending'}
               onClick={this.hideSidebar}
             />
             <SidebarLink
-              title={'Seat Arrangement'}
-              route={'/examination/seating'}
+              title={'Resolved Invoices'}
+              route={'/invoices/resolved'}
+              onClick={this.hideSidebar}
+            />
+          </SidebarCategory>
+
+          <SidebarCategory title="Issues" icon="layers">
+            <SidebarLink
+              title={'Pending Issues'}
+              route={'/issues/pending'}
+              onClick={this.hideSidebar}
+            />
+            <SidebarLink
+              title={'Resolved Issues'}
+              route={'/issues/resolved'}
               onClick={this.hideSidebar}
             />
           </SidebarCategory>
           <SidebarLink
-            icon={'license'}
-            title={'Attendance'}
-            route={'/attendance'}
-            onClick={this.hideSidebar}
-          />
-          <SidebarLink
-            icon={'graduation-hat'}
-            title={'Results'}
-            route={'/results'}
-            onClick={this.hideSidebar}
-          />
-          <SidebarLink
             icon={'store'}
-            title={'Classroom'}
-            route={'/classroom'}
+            title={'Wallet'}
+            route={'/wallet'}
             onClick={this.hideSidebar}
           />
         </ul>
