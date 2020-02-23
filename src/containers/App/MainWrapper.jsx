@@ -35,9 +35,12 @@ class MainWrapper extends PureComponent {
   }
 }
 
-export default withRouter(
-  connect(state => ({
+const mapStateToProps = state => {
+  console.log('The state is = ', state.firebase);
+  return {
     theme: state.theme,
     rtl: state.rtl
-  }))(MainWrapper)
-);
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(MainWrapper));

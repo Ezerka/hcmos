@@ -4,6 +4,10 @@ import React from 'react';
 import LogInForm from './LogInForm';
 import logo from '../../../images/adani.png';
 
+const handleSubmit = values => {
+  console.log('The values are', values);
+};
+
 const LoginCard = () => {
   // const { loading } = useAuth0();
   // if (loading) {
@@ -13,16 +17,16 @@ const LoginCard = () => {
     <div className="account__wrapper">
       <div className="account__card">
         <div className="account__head">
-          <h3 className="account__title text-center">
+          <div className="account__title text-center">
             <img
               style={{ align: 'center', width: '50%' }}
               src={logo}
               alt="Logo"
             />
             <span className="account__logo" />
-          </h3>
+          </div>
         </div>
-        <LogInForm onSubmit form="log_in_form" />
+        <LogInForm onSubmit={handleSubmit} form="log_in_form" />
       </div>
     </div>
   );
