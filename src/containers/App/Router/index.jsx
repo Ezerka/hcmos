@@ -5,6 +5,7 @@ import NotFound404 from '../../DefaultPage/404/index';
 import LogIn from '../../Account/LogIn/index';
 
 import WrappedRoutes from './WrappedRoutes';
+import Register from '../../Account/Register/index';
 
 const Router = () => (
   <MainWrapper>
@@ -12,6 +13,7 @@ const Router = () => (
       <Switch>
         <Route exact path="/" component={LogIn} />
         <Route path="/login" component={LogIn} />
+        <Route path="/register" component={Register} />
         <Route path="/404" component={NotFound404} />
         <Route path="/" component={WrappedRoutes} />
       </Switch>

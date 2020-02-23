@@ -10,17 +10,17 @@ import PropTypes from 'prop-types';
 class RegisterForm extends PureComponent {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.string
   };
 
   static defaultProps = {
-    errorMessage: '',
+    errorMessage: ''
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      showPassword: false,
+      showPassword: false
     };
 
     this.showPassword = this.showPassword.bind(this);
@@ -37,10 +37,7 @@ class RegisterForm extends PureComponent {
 
     return (
       <form className="form" onSubmit={handleSubmit}>
-        <Alert
-          color="danger"
-          isOpen={!!errorMessage}
-        >
+        <Alert color="danger" isOpen={!!errorMessage}>
           {errorMessage}
         </Alert>
         <div className="form__form-group">
@@ -87,9 +84,12 @@ class RegisterForm extends PureComponent {
             />
             <button
               type="button"
-              className={`form__form-group-button${showPassword ? ' active' : ''}`}
+              className={`form__form-group-button${
+                showPassword ? ' active' : ''
+              }`}
               onClick={e => this.showPassword(e)}
-            ><EyeIcon />
+            >
+              <EyeIcon />
             </button>
           </div>
         </div>
@@ -104,5 +104,5 @@ class RegisterForm extends PureComponent {
 }
 
 export default reduxForm({
-  form: 'register_form', // a unique identifier for this form
+  form: 'register_form' // a unique identifier for this form
 })(RegisterForm);
