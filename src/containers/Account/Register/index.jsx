@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import * as firebase from 'firebase/app';
 import RegisterForm from '../../../shared/components/login/RegisterForm';
 import logo from '../../../images/adani.png';
+import { auth, authError } from '../../../redux/actions/authActions';
 
 class Register extends PureComponent {
   static propTypes = {
@@ -23,7 +24,7 @@ class Register extends PureComponent {
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
       .then(() => {
-        history.push('/log_in');
+        history.push('/login');
       })
       .catch(error => {
         this.setState({ error: error.message });

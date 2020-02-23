@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { useAuth0 } from "../auth/withAuth0";
 // import Loading from "../Loading";
 import LogInForm from './LogInForm';
 import logo from '../../../images/adani.png';
-
-const handleSubmit = values => {
-  console.log('The values are', values);
-};
+import * as firebase from 'firebase';
+import { useDispatch } from 'react-redux';
+import { history } from '../../../redux/store';
+import { auth, authError } from '../../../redux/actions/authActions';
 
 const LoginCard = () => {
-  // const { loading } = useAuth0();
-  // if (loading) {
-  //   return <Loading loading={loading} />;
-  // }
+  const dispatch = useDispatch();
+  const [error, setError] = useState('');
+
+  const onSubmitFireBase = ({ username, password }) => {
+    console.log(username, password);
+    setError('');
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(username, password)
+      .then(res => {
+        dispatch(auth({ name: res.user.email }));
+        history.push('/home');
+      })
+      .catch(error => {
+        setError(error.message);
+      });
+  };
+
   return (
     <div className="account__wrapper">
       <div className="account__card">
@@ -26,7 +40,11 @@ const LoginCard = () => {
             <span className="account__logo" />
           </div>
         </div>
-        <LogInForm onSubmit={handleSubmit} form="log_in_form" />
+        <LogInForm
+          onSubmit={onSubmitFireBase}
+          errorMessage={error}
+          form="log_in_form"
+        />
       </div>
     </div>
   );
