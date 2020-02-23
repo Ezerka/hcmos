@@ -6,6 +6,7 @@ import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
 import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import * as firebase from 'firebase/app';
 import { Alert, Button } from 'reactstrap';
 import renderCheckBoxField from '../form/CheckBox';
 
@@ -26,24 +27,14 @@ class LogInForm extends PureComponent {
     typeFieldUser: 'text'
   };
 
-  constructor() {
-    super();
-    this.state = {
-      showPassword: false
-    };
-
-    this.showPassword = this.showPassword.bind(this);
-  }
+  state = {
+    showPassword: false
+  };
 
   showPassword(e) {
     e.preventDefault();
     this.setState(prevState => ({ showPassword: !prevState.showPassword }));
   }
-
-  redirectToHome = () => {
-    const { history } = this.props;
-    history.push('/home');
-  };
 
   render() {
     const {
@@ -115,11 +106,11 @@ class LogInForm extends PureComponent {
           <Button
             className="account__btn"
             color="primary"
-            onClick={this.redirectToHome}
+            onClick={handleSubmit}
           >
             Sign In
           </Button>
-          <Link className="btn btn-outline-primary account__btn" to="#">
+          <Link className="btn btn-outline-primary account__btn" to="/register">
             Create Account
           </Link>
         </div>

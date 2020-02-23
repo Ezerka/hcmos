@@ -4,25 +4,29 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import * as firebase from 'firebase/app';
 import RegisterForm from '../../../shared/components/login/RegisterForm';
+import logo from '../../../images/adani.png';
+import { auth, authError } from '../../../redux/actions/authActions';
 
 class Register extends PureComponent {
   static propTypes = {
     history: PropTypes.shape({
-      push: PropTypes.func,
-    }).isRequired,
+      push: PropTypes.func
+    }).isRequired
   };
 
   state = {
-    error: '',
+    error: ''
   };
 
-  registerFireBase = (user) => {
+  registerFireBase = user => {
     const { history } = this.props;
-    firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(user.email, user.password)
       .then(() => {
-        history.push('/log_in');
+        history.push('/login');
       })
-      .catch((error) => {
+      .catch(error => {
         this.setState({ error: error.message });
       });
   };
@@ -34,16 +38,27 @@ class Register extends PureComponent {
         <div className="account__wrapper">
           <div className="account__card">
             <div className="account__head">
-              <h3 className="account__title">Welcome to
-                <span className="account__logo"> Easy
-                  <span className="account__logo-accent">DEV</span>
+              <div className="account__title text-center">
+                <span className="account__logo">
+                  <img
+                    style={{ align: 'center', width: '50%' }}
+                    src={logo}
+                    alt="Logo"
+                  />
                 </span>
-              </h3>
-              <h4 className="account__subhead subhead">Create an account</h4>
+                <h3 className="account__subhead subheading  text-center">
+                  Create an account
+                </h3>
+              </div>
             </div>
-            <RegisterForm onSubmit={this.registerFireBase} errorMessage={error} />
+            <RegisterForm
+              onSubmit={this.registerFireBase}
+              errorMessage={error}
+            />
             <div className="account__have-account">
-              <p>Already have an account? <Link to="/log_in">Login</Link></p>
+              <p>
+                Already have an account? <Link to="/login">Login</Link>
+              </p>
             </div>
           </div>
         </div>
