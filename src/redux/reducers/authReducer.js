@@ -6,7 +6,7 @@ import {
 } from '../actions/authActions';
 
 const initialState = {
-  fullName: 'Ashfaq Nisar',
+  name: 'Ashfaq Nisar',
   avatar:
     'https://avatars2.githubusercontent.com/u/20638539?s=400&u=6aee861b862353e9b7384eb500d39adec471f633&v=4',
   uid: null
@@ -15,6 +15,10 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case AUTHENTICATE:
+      console.log(
+        '----------------------------------------------',
+        action.user
+      );
       return {
         name: action.user.name,
         avatar: action.user.avatar,
@@ -22,6 +26,9 @@ export default function(state = initialState, action) {
       };
     case AUTHENTICATE_ERROR_AUTH:
       return { error: action.error };
+    case 'SIGNOUT-SUCCESS':
+      console.log('Sign out success');
+      return state;
     default:
       return state;
   }

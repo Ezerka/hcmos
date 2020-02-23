@@ -40,7 +40,7 @@ class TopbarProfile extends PureComponent {
           <p className="topbar__avatar-name">
             {auth0.loading
               ? 'Loading...'
-              : (auth0.user && auth0.user.name) || user.fullName}
+              : (auth0.user && auth0.user.name) || user.name}
           </p>
           <DownIcon className="topbar__icon" />
         </button>
@@ -59,7 +59,6 @@ class TopbarProfile extends PureComponent {
               path="#"
               onClick={this.toggle}
             />
-            {/*<div className="topbar__menu-divider" />*/}
 
             <TopbarMenuLink
               title="Log Out"
