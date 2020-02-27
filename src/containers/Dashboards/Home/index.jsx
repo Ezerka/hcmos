@@ -1,5 +1,6 @@
 import { Col, Container, Row } from 'reactstrap';
 import React, { Component } from 'react';
+import SessionShort from './components/SessionShort';
 
 class HomeDashboard extends Component {
   render() {
@@ -10,6 +11,9 @@ class HomeDashboard extends Component {
             <Col md={12}>
               <h3 className="page-title">Home Page</h3>
             </Col>
+          </Row>
+          <Row>
+            <SessionShort />
           </Row>
         </Container>
       </div>
