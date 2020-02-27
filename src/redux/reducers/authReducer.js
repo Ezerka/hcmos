@@ -15,10 +15,6 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case AUTHENTICATE:
-      console.log(
-        '----------------------------------------------',
-        action.user
-      );
       return {
         name: action.user.name,
         avatar: action.user.avatar,
@@ -27,7 +23,6 @@ export default function(state = initialState, action) {
     case AUTHENTICATE_ERROR_AUTH:
       return { error: action.error };
     case 'SIGNOUT-SUCCESS':
-      console.log('Sign out success');
       return state;
     default:
       return state;
