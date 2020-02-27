@@ -30,45 +30,49 @@ class TopbarProfile extends PureComponent {
     const { collapse } = this.state;
 
     return (
-      <div className="topbar__profile">
-        <button className="topbar__avatar" type="button" onClick={this.toggle}>
-          <img
-            className="topbar__avatar-img"
-            src={(auth0.user && auth0.user.picture) || user.avatar || Ava}
-            alt="avatar"
-          />
-          <p className="topbar__avatar-name">
-            {auth0.loading
-              ? 'Loading...'
-              : (auth0.user && auth0.user.name) || user.name}
-          </p>
-          <DownIcon className="topbar__icon" />
-        </button>
-        {collapse && (
+      <>
+        <div className="topbar__profile">
           <button
-            className="topbar__back"
+            className="topbar__avatar"
             type="button"
             onClick={this.toggle}
-          />
-        )}
-        <Collapse isOpen={collapse} className="topbar__menu-wrap">
-          <div className="topbar__menu">
-            <TopbarMenuLink
-              title="Account Settings"
-              icon="cog"
-              path="#"
+          >
+            <img
+              className="topbar__avatar-img"
+              src={(auth0.user && auth0.user.picture) || user.avatar || Ava}
+              alt="avatar"
+            />
+            <p className="topbar__avatar-name">
+              {user.name ? user.name : 'Loading....'}
+            </p>
+            <DownIcon className="topbar__icon" />
+          </button>
+          {collapse && (
+            <button
+              className="topbar__back"
+              type="button"
               onClick={this.toggle}
             />
+          )}
+          <Collapse isOpen={collapse} className="topbar__menu-wrap">
+            <div className="topbar__menu">
+              <TopbarMenuLink
+                title="Account Settings"
+                icon="cog"
+                path="#"
+                onClick={this.toggle}
+              />
 
-            <TopbarMenuLink
-              title="Log Out"
-              icon="exit"
-              path="/login"
-              onClick={this.logout}
-            />
-          </div>
-        </Collapse>
-      </div>
+              <TopbarMenuLink
+                title="Log Out"
+                icon="exit"
+                path="/login"
+                onClick={this.logout}
+              />
+            </div>
+          </Collapse>
+        </div>
+      </>
     );
   }
 }

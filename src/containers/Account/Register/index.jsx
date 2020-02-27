@@ -6,6 +6,7 @@ import * as firebase from 'firebase/app';
 import RegisterForm from '../../../shared/components/login/RegisterForm';
 import logo from '../../../images/adani.png';
 import { auth, authError } from '../../../redux/actions/authActions';
+import Loading from '../../../shared/components/Loading';
 
 class Register extends PureComponent {
   static propTypes = {
@@ -15,25 +16,30 @@ class Register extends PureComponent {
   };
 
   state = {
-    error: ''
+    error: '',
+    loading: false
   };
 
   registerFireBase = user => {
     const { history } = this.props;
+    this.setState({ loading: true });
     firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
       .then(() => {
-        history.push('/login');
+        this.setState({ loading: false });
+        history.push('/home');
       })
       .catch(error => {
-        this.setState({ error: error.message });
+        this.setState({ error: error.message, loading: false });
       });
   };
 
   render() {
-    const { error } = this.state;
-    return (
+    const { error, loading } = this.state;
+    return loading ? (
+      <Loading loading={loading} />
+    ) : (
       <div className="account account--not-photo">
         <div className="account__wrapper">
           <div className="account__card">

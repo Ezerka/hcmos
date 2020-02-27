@@ -36,7 +36,6 @@ class MainWrapper extends PureComponent {
 }
 
 const mapStateToProps = state => {
-  console.log('The state is = ', state.firebase);
   return {
     theme: state.theme,
     rtl: state.rtl

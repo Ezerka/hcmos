@@ -11,29 +11,34 @@ import {
   authError,
   loginSuccess
 } from '../../../redux/actions/authActions';
+import Loading from '../Loading';
 
 const LoginCard = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const onSubmitFireBase = ({ email, password }) => {
-    console.log(email, '---------------', password);
     event.preventDefault();
-    console.log(email, password);
+    setLoading(true);
     setError('');
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
         dispatch(auth({ name: res.user.email, uid: res.user.uid }));
+        setLoading(false);
         history.push('/home');
       })
       .catch(error => {
+        setLoading(false);
         setError(error.message);
       });
   };
 
-  return (
+  return loading ? (
+    <Loading loading={loading} />
+  ) : (
     <div className="account__wrapper">
       <div className="account__card">
         <div className="account__head">
