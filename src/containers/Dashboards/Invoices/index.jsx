@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 
-class PendingInvoices extends Component {
+class Invoices extends Component {
   render() {
     return (
       <div>
         <Container className="dashboard">
           <Row>
             <Col md={12}>
-              <h3 className="page-title">Pending Invoices</h3>
+              <h3 className="page-title">Invoices</h3>
             </Col>
           </Row>
         </Container>
@@ -17,4 +17,4 @@ class PendingInvoices extends Component {
   }
 }
 
-export default PendingInvoices;
+export default Invoices;
