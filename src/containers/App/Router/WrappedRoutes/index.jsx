@@ -9,6 +9,7 @@ import PaymentDues from '../../../Dashboards/Payment/Dues';
 import PaymentHistory from '../../../Dashboards/Payment/History';
 import Invoices from '../../../Dashboards/Invoices';
 import InvoiceDetail from '../../../Dashboards/InvoiceDetail';
+import InvoicePayment from '../../../Dashboards/InvoicePayment';
 import Wallet from '../../../Dashboards/Wallet';
 
 export default () => (
@@ -20,6 +21,10 @@ export default () => (
         <Route path={'/outstanding'} component={OutstandingDashboard} />
         <Route path={'/payment/dues'} component={PaymentDues} />
         <Route path={'/payment/history'} component={PaymentHistory} />
+        <Route
+          path={'/invoices/:invoiceId/payment'}
+          component={InvoicePayment}
+        />
         <Route path={'/invoices/:invoiceId'} component={InvoiceDetail} />
         <Route path={'/invoices'} component={Invoices} />
         <Route path={'/issues'} component={Issues} />
