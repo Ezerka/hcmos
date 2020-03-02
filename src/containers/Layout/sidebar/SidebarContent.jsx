@@ -45,31 +45,21 @@ class SidebarContent extends Component {
             route={'/payment/history'}
             onClick={this.hideSidebar}
           />
-          <SidebarCategory title={'Invoices'} icon={'layers'}>
-            <SidebarLink
-              title={'Pending Invoices'}
-              route={'/invoices/pending'}
-              onClick={this.hideSidebar}
-            />
-            <SidebarLink
-              title={'Resolved Invoices'}
-              route={'/invoices/resolved'}
-              onClick={this.hideSidebar}
-            />
-          </SidebarCategory>
 
-          <SidebarCategory title="Issues" icon="layers">
-            <SidebarLink
-              title={'Pending Issues'}
-              route={'/issues/pending'}
-              onClick={this.hideSidebar}
-            />
-            <SidebarLink
-              title={'Resolved Issues'}
-              route={'/issues/resolved'}
-              onClick={this.hideSidebar}
-            />
-          </SidebarCategory>
+          <SidebarLink
+            icon={'layers'}
+            title={'Invoices'}
+            route={'/invoices'}
+            onClick={this.hideSidebar}
+          />
+
+          <SidebarLink
+            title={'Issues'}
+            icon={'layers'}
+            route={'/issues'}
+            onClick={this.hideSidebar}
+          />
+
           <SidebarLink
             icon={'store'}
             title={'Wallet'}
@@ -80,7 +70,8 @@ class SidebarContent extends Component {
 
         <ul className="sidebar__block">
           <SidebarLink
-            title="Log Out"
+            title={'Log Out'}
+            route={'/login'}
             icon="exit"
             route="/login"
             onClick={signOut}
