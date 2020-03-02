@@ -73,7 +73,6 @@ class SidebarContent extends Component {
             title={'Log Out'}
             route={'/login'}
             icon="exit"
-            route="/login"
             onClick={signOut}
           />
         </ul>
