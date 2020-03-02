@@ -94,6 +94,7 @@
         "react-stripe-checkout": "^2.6.3",
         "react-syntax-highlighter": "^8.1.0",
         "react-text-mask": "^5.4.3",
+        "react-to-print": "^2.5.1",
         "react-vis": "^1.11.6",
         "react-yandex-metrika": "^2.4.2",
         "reactstrap": "^7.1.0",
