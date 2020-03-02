@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-for */
 import React, { PureComponent } from 'react';
 import CheckIcon from 'mdi-react/CheckIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
@@ -14,7 +13,7 @@ class RadioButtonField extends PureComponent {
     defaultChecked: PropTypes.bool,
     radioValue: PropTypes.string,
     disabled: PropTypes.bool,
-    className: PropTypes.string,
+    className: PropTypes.string
   };
 
   static defaultProps = {
@@ -22,7 +21,7 @@ class RadioButtonField extends PureComponent {
     defaultChecked: false,
     radioValue: '',
     disabled: false,
-    className: '',
+    className: ''
   };
 
   componentDidMount() {
@@ -38,17 +37,17 @@ class RadioButtonField extends PureComponent {
   };
 
   render() {
-    const {
-      disabled, className, name, label, radioValue, value,
-    } = this.props;
+    const { disabled, className, name, label, radioValue, value } = this.props;
     const RadioButtonClass = classNames({
       'radio-btn': true,
-      disabled,
+      disabled
     });
 
     return (
       <label
-        className={`${RadioButtonClass}${className ? ` radio-btn--${className}` : ''}`}
+        className={`${RadioButtonClass}${
+          className ? ` radio-btn--${className}` : ''
+        }`}
       >
         <input
           className="radio-btn__radio"
@@ -59,22 +58,28 @@ class RadioButtonField extends PureComponent {
           disabled={disabled}
         />
         <span className="radio-btn__radio-custom" />
-        {className === 'button'
-          ? (
-            <span className="radio-btn__label-svg">
-              <CheckIcon className="radio-btn__label-check" />
-              <CloseIcon className="radio-btn__label-uncheck" />
-            </span>
-          ) : ''}
+        {className === 'button' ? (
+          <span className="radio-btn__label-svg">
+            <CheckIcon className="radio-btn__label-check" />
+            <CloseIcon className="radio-btn__label-uncheck" />
+          </span>
+        ) : (
+          ''
+        )}
         <span className="radio-btn__label">{label}</span>
       </label>
     );
   }
 }
 
-const renderRadioButtonField = (props) => {
+const renderRadioButtonField = props => {
   const {
-    input, label, defaultChecked, disabled, className, radioValue,
+    input,
+    label,
+    defaultChecked,
+    disabled,
+    className,
+    radioValue
   } = props;
   return (
     <RadioButtonField
@@ -91,13 +96,13 @@ const renderRadioButtonField = (props) => {
 renderRadioButtonField.propTypes = {
   input: PropTypes.shape({
     onChange: PropTypes.func,
-    name: PropTypes.string,
+    name: PropTypes.string
   }).isRequired,
   label: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   defaultChecked: PropTypes.bool,
   disabled: PropTypes.bool,
   radioValue: PropTypes.string,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 renderRadioButtonField.defaultProps = {
@@ -105,7 +110,7 @@ renderRadioButtonField.defaultProps = {
   defaultChecked: false,
   disabled: false,
   radioValue: '',
-  className: '',
+  className: ''
 };
 
 export default renderRadioButtonField;

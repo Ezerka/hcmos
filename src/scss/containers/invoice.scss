@@ -23,11 +23,11 @@
 
 .invoice__logo {
   width: 120px;
-  height: 16px;
+  height: 25px;
   margin-bottom: 10px;
   background-repeat: no-repeat;
   background-position-y: center;
-  background-position-x: left;
+  background-position-x: right;
   background-size: contain;
 
   @include themify($themes) {

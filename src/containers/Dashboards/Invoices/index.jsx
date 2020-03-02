@@ -74,12 +74,8 @@ class Invoices extends Component {
         <Container className="dashboard">
           <Row>
             <Col md={12}>
-              <h3 className="page-title">Invoices</h3>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12}>
               <MUIDataTable
+                title={'Invoices'}
                 options={tableOptions}
                 columns={columns}
                 data={invoicesData.map(invoice => {
