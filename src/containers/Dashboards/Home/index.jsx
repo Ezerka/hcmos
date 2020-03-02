@@ -1,6 +1,6 @@
 import { Col, Container, Row } from 'reactstrap';
 import React, { Component } from 'react';
-import SessionShort from './components/SessionShort';
+import CurrentOutstanding from './components/CurrentOutstanding';
 
 class HomeDashboard extends Component {
   render() {
@@ -13,7 +13,7 @@ class HomeDashboard extends Component {
             </Col>
           </Row>
           <Row>
-            <SessionShort />
+            <CurrentOutstanding />
           </Row>
         </Container>
       </div>
