@@ -29,8 +29,7 @@ export function authError(error) {
 
 export const signOut = () => {
   return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase;
-    firebase
+    getFirebase
       .auth()
       .signOut()
       .then(() => {

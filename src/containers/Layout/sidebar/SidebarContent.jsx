@@ -80,10 +80,5 @@ class SidebarContent extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    signOut: () => dispatch(signOut())
-  };
-};
 
-export default connect(null, mapDispatchToProps)(SidebarContent);
+export default SidebarContent;

@@ -1,9 +1,4 @@
-import {
-  AUTHENTICATE,
-  AUTHENTICATE_ERROR_AUTH,
-  LOGIN_ERROR,
-  LOGIN_SUCCESS
-} from '../actions/authActions';
+import { AUTHENTICATE, AUTHENTICATE_ERROR_AUTH } from '../actions/authActions';
 
 const initialState = {
   name: 'Ashfaq Nisar',
@@ -23,7 +18,7 @@ export default function(state = initialState, action) {
     case AUTHENTICATE_ERROR_AUTH:
       return { error: action.error };
     case 'SIGNOUT-SUCCESS':
-      return state;
+      return { ...state };
     default:
       return state;
   }
