@@ -1,4 +1,5 @@
 import { AUTHENTICATE, AUTHENTICATE_ERROR_AUTH } from '../actions/authActions';
+import { history } from '../store';
 
 const initialState = {
   name: 'Ashfaq Nisar',
@@ -18,6 +19,7 @@ export default function(state = initialState, action) {
     case AUTHENTICATE_ERROR_AUTH:
       return { error: action.error };
     case 'SIGNOUT-SUCCESS':
+      history.push('/login');
       return { ...state };
     default:
       return state;

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 // import Loading from "../Loading";
 import LogInForm from './LogInForm';
 import logo from '../../../images/adani.png';
-import * as firebase from 'firebase';
 import { useDispatch } from 'react-redux';
 import { history } from '../../../redux/store';
 import {
@@ -12,6 +11,7 @@ import {
   loginSuccess
 } from '../../../redux/actions/authActions';
 import Loading from '../Loading';
+import firebase from '../../../config/firebase';
 
 const LoginCard = () => {
   const dispatch = useDispatch();

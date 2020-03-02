@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SidebarLink from './SidebarLink';
-import SidebarCategory from './SidebarCategory';
-import { connect } from 'react-redux';
 import { signOut } from '../../../redux/actions/authActions';
 
 class SidebarContent extends Component {
@@ -16,7 +14,6 @@ class SidebarContent extends Component {
   };
 
   render() {
-    const { signOut } = this.props;
     return (
       <div className="sidebar__content">
         <ul className="sidebar__block">

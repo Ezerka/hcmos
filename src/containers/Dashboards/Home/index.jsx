@@ -9,7 +9,7 @@ class HomeDashboard extends Component {
         <Container className="dashboard">
           <Row>
             <Col md={12}>
-              <h3 className="page-title">Home Page</h3>
+              <h3 className="page-title">Home Pages</h3>
             </Col>
           </Row>
           <Row>
