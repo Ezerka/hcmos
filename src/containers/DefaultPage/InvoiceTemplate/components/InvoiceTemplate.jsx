@@ -1,13 +1,10 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
-import {
-  Card, Col, Button, ButtonToolbar, Table, CardBody,
-} from 'reactstrap';
+import { Card, Col, Button, ButtonToolbar, Table, CardBody } from 'reactstrap';
 
 const invoiceData = [
   { title: 'Wordpress Plugin Apollo 200', quantity: 1, cost: 27 },
   { title: 'Easy Pro Admin Template', quantity: 1, cost: 59 },
-  { title: 'Spirit HTML Template', quantity: 2, cost: 20 },
+  { title: 'Spirit HTML Template', quantity: 2, cost: 20 }
 ];
 
 const InvoiceTemplate = () => (

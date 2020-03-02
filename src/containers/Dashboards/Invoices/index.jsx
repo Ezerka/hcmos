@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'reactstrap';
 import MUIDataTable from 'mui-datatables';
 import invoicesData from '../../../data/invoicesData';
 import Moment from 'react-moment';
-import axios from 'axios';
+import { history } from '../../../redux/store';
 
 const beautifyInvoice = invoice => {
   return [
@@ -26,9 +26,10 @@ const handleUndefined = (data, character) => {
 
 class Invoices extends Component {
   render() {
-    const handleRowClick = (rowData, rowMeta) => {
-      console.log(rowData);
+    const handleRowClick = async (rowData, rowMeta) => {
+      history.push(`/invoices/${rowData[1]}`);
     };
+
     const tableOptions = {
       filterType: 'dropdown',
       selectableRows: 'none',
@@ -92,4 +93,5 @@ class Invoices extends Component {
     );
   }
 }
+
 export default Invoices;
