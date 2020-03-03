@@ -10,7 +10,8 @@ import {
   user,
   newOrderTable,
   todo,
-  theme
+  theme,
+  invoices
 } from './reducers';
 
 import appSagas from './app/appSagas';
@@ -25,7 +26,8 @@ const reducers = {
   firebase,
   sidebar,
   rtl,
-  cryptoTable
+  cryptoTable,
+  invoices
 };
 
 const store = createStore(combineReducers(reducers), {}, middleware);
