@@ -2,11 +2,27 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import * as firebase from 'firebase/app';
+import firebase from '../../../config/firebase';
 import RegisterForm from '../../../shared/components/login/RegisterForm';
 import logo from '../../../images/adani.png';
-import { auth, authError } from '../../../redux/actions/authActions';
 import Loading from '../../../shared/components/Loading';
+import { auth } from '../../../redux/actions/authActions';
+
+const db = firebase.firestore();
+
+const createUser = async data => {
+  const user = {
+    userName: data.username,
+    email: data.email,
+    phoneNumber: data.phonenumber,
+    objectId: data.objectId
+  };
+
+  await db
+    .collection('users')
+    .doc(user.objectId.toString())
+    .set(user);
+};
 
 class Register extends PureComponent {
   static propTypes = {
@@ -26,7 +42,8 @@ class Register extends PureComponent {
     firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
-      .then(() => {
+      .then(async response => {
+        await createUser({ ...user, objectId: response.user.uid });
         this.setState({ loading: false });
         history.push('/home');
       })

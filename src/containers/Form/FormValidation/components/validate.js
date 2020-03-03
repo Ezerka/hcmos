@@ -8,6 +8,10 @@ const validate = (values) => {
     errors.email = 'Email field shouldn’t be empty';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
+  }if (!values.phonenumber){
+    errors.phonenumber = "Phone Number shouldn't be empty"
+  }else if (!/^[A[0-9]{10}$/i.test(values.phonenumber)){
+    errors.phonenumber = "Invalid Phone Number"
   }
   if (!values.url) {
     errors.url = 'Url field shouldn’t be empty';

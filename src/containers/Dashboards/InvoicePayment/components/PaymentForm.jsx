@@ -130,7 +130,7 @@ const PaymentForm = ({ handleSubmit }) => {
           </div>
         </div>
         <div className="form__form-group form__form-group-cvc">
-          <span className="form__form-group-label">CVC</span>
+          <span className="form__form-group-label">CVV</span>
           <div className="form__form-group-field">
             <Field
               name="cvc"

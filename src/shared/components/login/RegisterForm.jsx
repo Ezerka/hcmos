@@ -4,6 +4,7 @@ import EyeIcon from 'mdi-react/EyeIcon';
 import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
 import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import MailRuIcon from 'mdi-react/MailRuIcon';
+import CallIcon from 'mdi-react/PhoneIcon';
 import { Button, Alert } from 'reactstrap';
 import PropTypes from 'prop-types';
 import validate from '../../../containers/Form/FormValidation/components/validate';
@@ -75,6 +76,21 @@ class RegisterForm extends PureComponent {
               component={renderField}
               type="email"
               placeholder="example@mail.com"
+              required
+            />
+          </div>
+        </div>
+        <div className="form__form-group">
+          <span className="form__form-group-label">Phone Number</span>
+          <div className="form__form-group-field">
+            <div className="form__form-group-icon">
+              <CallIcon />
+            </div>
+            <Field
+              name="phonenumber"
+              component={renderField}
+              type="phone"
+              placeholder="99999 99999"
               required
             />
           </div>
