@@ -4,6 +4,10 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import SidebarContent from './SidebarContent';
 import { SidebarProps } from '../../../shared/prop-types/ReducerProps';
+import firebase from '../../../config/firebase';
+import { useDispatch } from 'react-redux';
+import { signOutUser } from '../../../redux/actions/authActions';
+import { history } from '../../../redux/store';
 
 const Sidebar = ({
   changeToDark,
@@ -16,6 +20,20 @@ const Sidebar = ({
     'sidebar--show': sidebar.show,
     'sidebar--collapse': sidebar.collapse
   });
+  const dispatch = useDispatch();
+
+  const firebaseSignOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch(signOutUser());
+        history.push('/login');
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <div className={sidebarClass}>
@@ -27,6 +45,7 @@ const Sidebar = ({
       <Scrollbar className="sidebar__scroll scroll">
         <div className="sidebar__wrapper sidebar__wrapper--desktop">
           <SidebarContent
+            signOut={() => firebaseSignOut()}
             onClick={() => {}}
             changeToDark={changeToDark}
             changeToLight={changeToLight}

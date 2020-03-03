@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-// import { useAuth0 } from "../auth/withAuth0";
-// import Loading from "../Loading";
 import LogInForm from './LogInForm';
 import logo from '../../../images/adani.png';
 import { useDispatch } from 'react-redux';
 import { history } from '../../../redux/store';
-import {
-  auth,
-  authError,
-  loginSuccess
-} from '../../../redux/actions/authActions';
+import { loginError, loginSuccess } from '../../../redux/actions/authActions';
 import Loading from '../Loading';
 import firebase from '../../../config/firebase';
 
@@ -26,12 +20,13 @@ const LoginCard = () => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        dispatch(auth({ name: res.user.email, uid: res.user.uid }));
+        dispatch(loginSuccess({ name: res.user.email, uid: res.user.uid }));
         setLoading(false);
         history.push('/home');
       })
       .catch(error => {
         setLoading(false);
+        dispatch(loginError(error));
         setError(error.message);
       });
   };

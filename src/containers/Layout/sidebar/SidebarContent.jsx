@@ -1,81 +1,75 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SidebarLink from './SidebarLink';
-import { signOut } from '../../../redux/actions/authActions';
 
-class SidebarContent extends Component {
-  static propTypes = {
-    onClick: PropTypes.func.isRequired
-  };
+const SidebarContent = props => {
+  const { onClick, signOut } = props;
 
-  hideSidebar = () => {
-    const { onClick } = this.props;
+  const hideSidebar = () => {
     onClick();
   };
 
-  render() {
-    return (
-      <div className="sidebar__content">
-        <ul className="sidebar__block">
-          <SidebarLink
-            title={'Home'}
-            icon={'home'}
-            route={'/home'}
-            onClick={this.hideSidebar}
-          />
+  return (
+    <div className="sidebar__content">
+      <ul className="sidebar__block">
+        <SidebarLink
+          title={'Home'}
+          icon={'home'}
+          route={'/home'}
+          onClick={hideSidebar}
+        />
 
-          <SidebarLink
-            title={'Current Outstandings'}
-            icon={'cart'}
-            route={'/outstanding'}
-            onClick={this.hideSidebar}
-          />
-          <SidebarLink
-            title={'Payment Dues'}
-            icon={'user'}
-            route={'/payment/dues'}
-            onClick={this.hideSidebar}
-          />
-          <SidebarLink
-            title={'Payment History'}
-            icon={'license'}
-            route={'/payment/history'}
-            onClick={this.hideSidebar}
-          />
+        <SidebarLink
+          title={'Current Outstandings'}
+          icon={'cart'}
+          route={'/outstanding'}
+          onClick={hideSidebar}
+        />
+        <SidebarLink
+          title={'Payment Dues'}
+          icon={'user'}
+          route={'/payment/dues'}
+          onClick={hideSidebar}
+        />
+        <SidebarLink
+          title={'Payment History'}
+          icon={'license'}
+          route={'/payment/history'}
+          onClick={hideSidebar}
+        />
 
-          <SidebarLink
-            icon={'layers'}
-            title={'Invoices'}
-            route={'/invoices'}
-            onClick={this.hideSidebar}
-          />
+        <SidebarLink
+          icon={'layers'}
+          title={'Invoices'}
+          route={'/invoices'}
+          onClick={hideSidebar}
+        />
 
-          <SidebarLink
-            title={'Issues'}
-            icon={'layers'}
-            route={'/issues'}
-            onClick={this.hideSidebar}
-          />
+        <SidebarLink
+          title={'Issues'}
+          icon={'layers'}
+          route={'/issues'}
+          onClick={hideSidebar}
+        />
 
-          <SidebarLink
-            icon={'store'}
-            title={'Wallet'}
-            route={'/wallet'}
-            onClick={this.hideSidebar}
-          />
-        </ul>
+        <SidebarLink
+          icon={'store'}
+          title={'Wallet'}
+          route={'/wallet'}
+          onClick={hideSidebar}
+        />
+      </ul>
 
-        <ul className="sidebar__block">
-          <SidebarLink
-            title={'Log Out'}
-            route={'/login'}
-            icon="exit"
-            onClick={signOut}
-          />
-        </ul>
-      </div>
-    );
-  }
-}
+      <ul className="sidebar__block">
+        <SidebarLink
+          title={'Log Out'}
+          route={'/login'}
+          icon="exit"
+          onClick={signOut}
+        />
+      </ul>
+    </div>
+  );
+};
 
 export default SidebarContent;

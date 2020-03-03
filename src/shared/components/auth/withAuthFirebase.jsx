@@ -10,61 +10,73 @@ function withAuthFirebase(WrappedComponent) {
   class HocAuth extends Component {
     static propTypes = {
       history: PropTypes.shape({
-        push: PropTypes.func,
+        push: PropTypes.func
       }).isRequired,
-      dispatch: PropTypes.func.isRequired,
+      dispatch: PropTypes.func.isRequired
     };
 
     state = {
       error: '',
-      isOpen: false,
+      isOpen: false
     };
 
     closeModal = () => {
       this.setState(prevState => ({
-        isOpen: !prevState.isOpen,
+        isOpen: !prevState.isOpen
       }));
-    }
+    };
 
     onSubmitFireBase = ({ username, password }) => {
       const { history, dispatch } = this.props;
       this.setState({ error: '' });
-      firebase.auth().signInWithEmailAndPassword(username, password).then((res) => {
-        dispatch(auth({ name: res.user.email }));
-        history.push('/dashboard_mobile_app');
-        this.setState({ isOpen: false });
-      }).catch((error) => {
-        this.setState({ error: error.message });
-      });
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(username, password)
+        .then(res => {
+          dispatch(auth({ name: res.user.email }));
+          history.push('/dashboard_mobile_app');
+          this.setState({ isOpen: false });
+        })
+        .catch(error => {
+          this.setState({ error: error.message });
+        });
     };
 
     onLoginGoogle = () => {
       const { history, dispatch } = this.props;
       const provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithPopup(provider)
-        .then((res) => {
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(res => {
           localStorage.setItem('easydev', res.credential.accessToken);
-          dispatch(auth({ name: res.user.displayName, avatar: res.user.photoURL }));
+          dispatch(
+            auth({ name: res.user.displayName, avatar: res.user.photoURL })
+          );
           history.push('/dashboard_mobile_app');
         })
-        .catch((error) => {
+        .catch(error => {
           dispatch(authError(error.message));
         });
-    }
+    };
 
     onLoginFacebook = () => {
       const { history, dispatch } = this.props;
       const provider = new firebase.auth.FacebookAuthProvider();
-      firebase.auth().signInWithPopup(provider)
-        .then((res) => {
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(res => {
           localStorage.setItem('easydev', res.credential.accessToken);
-          dispatch(auth({ name: res.user.displayName, avatar: res.user.photoURL }));
+          dispatch(
+            auth({ name: res.user.displayName, avatar: res.user.photoURL })
+          );
           history.push('/dashboard_mobile_app');
         })
-        .catch((error) => {
+        .catch(error => {
           dispatch(authError(error.message));
         });
-    }
+    };
 
     changeIsOpenModalFireBase = () => {
       this.setState({ isOpen: true, error: '' });
@@ -84,7 +96,10 @@ function withAuthFirebase(WrappedComponent) {
             onGoogleClick={this.onLoginGoogle}
             onFacebookClick={this.onLoginFacebook}
           />
-          <WrappedComponent {...this.props} changeIsOpenModalFireBase={this.changeIsOpenModalFireBase} />
+          <WrappedComponent
+            {...this.props}
+            changeIsOpenModalFireBase={this.changeIsOpenModalFireBase}
+          />
         </div>
       );
     }

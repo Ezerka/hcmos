@@ -1,22 +1,19 @@
-export const AUTHENTICATE = 'AUTHENTICATE';
 export const AUTHENTICATE_ERROR_AUTH = 'AUTHENTICATE_ERROR_AUTH';
+
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGOUT = 'LOGOUT';
 
-export function auth({ name, avatar, uid }) {
+export const loginSuccess = response => {
   return {
-    type: AUTHENTICATE,
-    user: { name, avatar, uid }
+    type: LOGIN_SUCCESS,
+    payload: response
   };
-}
-export function loginSuccess() {
+};
+export function loginError(error) {
   return {
-    type: LOGIN_SUCCESS
-  };
-}
-export function loginError() {
-  return {
-    type: LOGIN_ERROR
+    type: LOGIN_ERROR,
+    payload: error
   };
 }
 
@@ -27,13 +24,8 @@ export function authError(error) {
   };
 }
 
-export const signOut = () => {
-  return (dispatch, getState, { getFirebase }) => {
-    getFirebase
-      .auth()
-      .signOut()
-      .then(() => {
-        dispatch({ type: 'SIGNOUT-SUCCESS' });
-      });
+export const signOutUser = () => {
+  return {
+    type: LOGOUT
   };
 };
