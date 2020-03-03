@@ -6,23 +6,7 @@ import firebase from '../../../config/firebase';
 import RegisterForm from '../../../shared/components/login/RegisterForm';
 import logo from '../../../images/adani.png';
 import Loading from '../../../shared/components/Loading';
-import { auth } from '../../../redux/actions/authActions';
-
-const db = firebase.firestore();
-
-const createUser = async data => {
-  const user = {
-    userName: data.username,
-    email: data.email,
-    phoneNumber: data.phonenumber,
-    objectId: data.objectId
-  };
-
-  await db
-    .collection('users')
-    .doc(user.objectId.toString())
-    .set(user);
-};
+import { createUser } from './registerThunk';
 
 class Register extends PureComponent {
   static propTypes = {

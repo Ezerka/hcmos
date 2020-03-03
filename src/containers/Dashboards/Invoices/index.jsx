@@ -1,22 +1,22 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import MUIDataTable from 'mui-datatables';
-import invoicesData from '../../../data/invoicesData';
 import Moment from 'react-moment';
 import { history } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../shared/components/Loading';
 import { getInvoices } from './invoicesThunk';
+import { get } from 'lodash';
 
 const beautifyInvoice = invoice => {
   return [
-    handleUndefined(invoice.createdAt),
-    handleUndefined(invoice.id),
-    handleUndefined(invoice.customer ? invoice.customer.name : ''),
-    handleUndefined(invoice.status),
-    handleUndefined(invoice.dueDate),
-    handleUndefined(invoice.totalAmount),
-    handleUndefined(invoice.balanceDue)
+    handleUndefined(invoice.createdAt, '-'),
+    handleUndefined(invoice.id, '-'),
+    handleUndefined(get(invoice, 'customer.name'), '-'),
+    handleUndefined(invoice.status, '-'),
+    handleUndefined(invoice.dueDate, '-'),
+    handleUndefined(invoice.totalAmount, '-'),
+    handleUndefined(invoice.balanceDue, '-')
   ];
 };
 
@@ -29,13 +29,15 @@ const handleUndefined = (data, character) => {
 
 const Invoices = () => {
   const { state, invoicesData, error } = useSelector(state => state.invoices);
+  const { uid } = useSelector(state => state.user);
   const handleRowClick = async (rowData, rowMeta) => {
-    history.push(`/invoices/${rowData[1]}`);
+    console.log(invoicesData[rowMeta.dataIndex]);
+    history.push(`/invoices/${invoicesData[rowMeta.dataIndex].objectId}`);
   };
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getInvoices());
+    dispatch(getInvoices(uid));
   }, [dispatch]);
 
   const tableOptions = {
