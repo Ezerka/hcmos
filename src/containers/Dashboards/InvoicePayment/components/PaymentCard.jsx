@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import PaymentForm from './PaymentForm';
+import { StripeProvider, Elements } from 'react-stripe-elements';
 
 const performPayment = values => {
   console.log(values);
@@ -16,7 +17,13 @@ const PaymentCard = () => {
               <h5 className="bold-text">Payment</h5>
             </div>
             <div className="payment">
-              <PaymentForm onSubmit={performPayment} />
+              <StripeProvider
+                apiKey={'pk_test_ED53qZ8D0iwhQ9cXQ6JBxb68000aUl34vY'}
+              >
+                <Elements>
+                  <PaymentForm />
+                </Elements>
+              </StripeProvider>
             </div>
           </CardBody>
         </Card>
