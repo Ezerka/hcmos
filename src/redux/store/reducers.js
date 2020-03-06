@@ -6,3 +6,4 @@ export { default as theme } from '../reducers/themeReducer';
 export { default as todo } from '../reducers/todoReducer';
 export { default as rtl } from '../reducers/rtlReducer';
 export { default as invoices } from '../reducers/invoicesReducer';
+export { default as invoiceDetail } from '../reducers/invoiceDetailReducer';
