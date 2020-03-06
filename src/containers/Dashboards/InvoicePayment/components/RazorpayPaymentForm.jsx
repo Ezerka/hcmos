@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container, Button } from 'reactstrap';
+import axios from 'axios';
 
 const RazorpayPaymentForm = () => {
   const options = {
     key: 'rzp_test_uK9telCgOeSCRY',
     currency: 'INR',
     name: 'Invoice IN1000',
-    order_id: 'order_EOFjVX8IeNvQ9a',
     handler: function(response, error) {
       console.log(response);
       alert(response);
@@ -16,15 +16,22 @@ const RazorpayPaymentForm = () => {
     },
     theme: {
       color: '#4359f5'
-      // background:
-      //   'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(22,137,203,1) 0%,' +
-      //   ' rgba(185,23,117,1) 100%)'
     }
   };
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-
-    const razorpayInstance = new Razorpay(options);
+    const response = await axios({
+      method: 'post',
+      url: 'https://b9i2x.sse.codesandbox.io/createOrder',
+      data: {
+        amount: 5000000,
+        currency: 'INR',
+        receipt: 'receipt#4',
+        payment_capture: 1
+      }
+    });
+    const responseOrderId = { order_id: response.data.id };
+    const razorpayInstance = new Razorpay({ ...options, ...responseOrderId });
     razorpayInstance.open();
   };
   return (

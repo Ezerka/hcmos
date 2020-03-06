@@ -11,7 +11,8 @@ import {
   newOrderTable,
   todo,
   theme,
-  invoices
+  invoices,
+  invoiceDetail
 } from './reducers';
 
 import appSagas from './app/appSagas';
@@ -27,7 +28,8 @@ const reducers = {
   sidebar,
   rtl,
   cryptoTable,
-  invoices
+  invoices,
+  invoiceDetail
 };
 
 const store = createStore(combineReducers(reducers), {}, middleware);
