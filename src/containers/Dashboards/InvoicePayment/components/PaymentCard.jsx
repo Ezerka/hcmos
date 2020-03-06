@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import StripePaymentForm from './StripePaymentForm';
 import { StripeProvider, Elements } from 'react-stripe-elements';
-import RazorpayPaymentForm from './RazorpayPaymentForm';
+import RazorpayPaymentForm from '../components/RazorpayPaymentForm';
 
-const performPayment = values => {
-  console.log(values);
-};
 const PaymentCard = () => {
-  const [preferredPayment, setPreferredPayment] = useState('credit/debit');
   return (
     <>
       <Col md={12} lg={12}>
