@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
-import PaymentForm from './PaymentForm';
+import StripePaymentForm from './StripePaymentForm';
 import { StripeProvider, Elements } from 'react-stripe-elements';
+import RazorpayPaymentForm from './RazorpayPaymentForm';
 
 const performPayment = values => {
   console.log(values);
@@ -16,15 +17,16 @@ const PaymentCard = () => {
             <div className="card__title">
               <h5 className="bold-text">Payment</h5>
             </div>
-            <div className="payment">
-              <StripeProvider
-                apiKey={'pk_test_ED53qZ8D0iwhQ9cXQ6JBxb68000aUl34vY'}
-              >
-                <Elements>
-                  <PaymentForm />
-                </Elements>
-              </StripeProvider>
-            </div>
+            <RazorpayPaymentForm />
+            {/*<div className="payment">*/}
+            {/*  <StripeProvider*/}
+            {/*    apiKey={'pk_test_ED53qZ8D0iwhQ9cXQ6JBxb68000aUl34vY'}*/}
+            {/*  >*/}
+            {/*    <Elements>*/}
+            {/*      <StripePaymentForm />*/}
+            {/*    </Elements>*/}
+            {/*  </StripeProvider>*/}
+            {/*</div>*/}
           </CardBody>
         </Card>
       </Col>
