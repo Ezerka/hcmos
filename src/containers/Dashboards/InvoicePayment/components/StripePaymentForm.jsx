@@ -15,7 +15,7 @@ const stripeAuthHeader = {
   Authorization: `Bearer rk_test_zZeti8bqheaWSBNqKyC8jIdk00aehT0cUr`
 };
 
-class PaymentForm extends Component {
+class StripePaymentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -175,9 +175,9 @@ class PaymentForm extends Component {
   }
 }
 
-PaymentForm.propTypes = {
+StripePaymentForm.propTypes = {
   stripe: PropTypes.shape({
     createToken: PropTypes.func.isRequired
   }).isRequired
 };
-export default injectStripe(PaymentForm);
+export default injectStripe(StripePaymentForm);
