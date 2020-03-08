@@ -12,6 +12,7 @@
         "@material-ui/lab": "^4.0.0-alpha.39",
         "@material-ui/pickers": "^3.2.8",
         "@mdi/font": "^3.5.95",
+        "@sentry/browser": "^5.13.2",
         "axios": "^0.19.2",
         "bfj": "6.1.1",
         "bootstrap": "^4.3.1",
