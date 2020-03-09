@@ -6,26 +6,19 @@ import {
 } from '../actions/authActions';
 
 const initialState = {
-  name: '',
-  custId: null,
-  uid: null,
-  loading: false,
+  state: 'initial',
+  data: {},
   error: ''
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case LOGIN_USER_LOADING:
-      return { loading: true };
+      return { ...state, state: 'loading' };
     case LOGIN_USER_SUCCESS:
-      return {
-        name: action.payload.name,
-        avatar: action.payload.avatar,
-        uid: action.payload.uid,
-        loading: false
-      };
+      return { ...state, state: 'loaded', data: action.payload, error: null };
     case LOGIN_USER_ERROR:
-      return { error: action.error };
+      return { ...state, state: 'error', error: action.error };
     case LOGOUT:
       return initialState;
     default:

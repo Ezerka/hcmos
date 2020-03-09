@@ -7,17 +7,15 @@ import { loginUser } from '../loginThunk';
 
 const LoginCard = () => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector(state => state.user);
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState('');
+  const { state, error } = useSelector(state => state.user);
 
   const onSubmitFireBase = ({ email, password }) => {
     event.preventDefault();
     dispatch(loginUser(email, password));
   };
 
-  return loading ? (
-    <Loading loading={loading} />
+  return ['loading'].includes(state) ? (
+    <Loading loading={['initial', 'loading'].includes(state)} />
   ) : (
     <div className="account__wrapper">
       <div className="account__card">

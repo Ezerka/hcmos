@@ -66,6 +66,6 @@ export default withRouter(
   connect(state => ({
     sidebar: state.sidebar,
     theme: state.theme,
-    user: state.user
+    user: state.user.data
   }))(Layout)
 );

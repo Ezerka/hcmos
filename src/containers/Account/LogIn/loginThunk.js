@@ -13,9 +13,25 @@ export const loginUser = (email, password) => async dispatch => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(async res => {
-      // const user = await axios({});
-      dispatch(loginUserSuccess({ name: res.user.email, uid: res.user.uid }));
-      history.push('/home');
+      axios({
+        method: 'get',
+        url: '/customers',
+        params: { uid: res.user.uid }
+      })
+        .then(customer => {
+          const user = {
+            name: customer.data.name,
+            email: customer.data.email,
+            custId: customer.data.custId,
+            uid: customer.data.uid
+          };
+          dispatch(loginUserSuccess(user));
+          history.push('/home');
+        })
+        .catch(err => {
+          console.error(err.message);
+          dispatch(loginUserError(err.message));
+        });
     })
     .catch(error => {
       console.error(error.message);

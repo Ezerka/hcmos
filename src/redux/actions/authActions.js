@@ -19,7 +19,6 @@ export const loginUserLoading = () => {
 };
 
 export function loginUserError(error) {
-  console.log('Action: ', error);
   return {
     type: LOGIN_USER_ERROR,
     error: error
