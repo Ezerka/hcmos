@@ -3,7 +3,7 @@ import {
   LOGIN_USER_LOADING,
   LOGIN_USER_SUCCESS,
   LOGOUT
-} from '../actions/authActions';
+} from '../actions/loginActions';
 
 const initialState = {
   state: 'initial',

@@ -1,5 +1,6 @@
 export { default as cryptoTable } from '../reducers/cryptoTableReducer';
-export { default as user } from '../reducers/authReducer';
+export { default as user } from '../reducers/loginReducer';
+export { default as register } from '../reducers/registerReducer';
 export { default as newOrderTable } from '../reducers/newOrderTableReducer';
 export { default as sidebar } from '../reducers/sidebarReducer';
 export { default as theme } from '../reducers/themeReducer';

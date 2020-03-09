@@ -4,7 +4,7 @@ import {
   loginUserLoading,
   loginUserError,
   loginUserSuccess
-} from '../../../redux/actions/authActions';
+} from '../../../redux/actions/loginActions';
 import { history } from '../../../redux/store';
 
 export const loginUser = (email, password) => async dispatch => {

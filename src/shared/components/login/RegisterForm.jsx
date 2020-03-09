@@ -58,7 +58,7 @@ class RegisterForm extends PureComponent {
               <AccountOutlineIcon />
             </div>
             <Field
-              name="username"
+              name="name"
               component={renderField}
               type="text"
               placeholder="Name"
@@ -87,10 +87,10 @@ class RegisterForm extends PureComponent {
               <CallIcon />
             </div>
             <Field
-              name="phonenumber"
+              name="number"
               component={renderField}
               type="phone"
-              placeholder="99999 99999"
+              placeholder="9999999999"
               required
             />
           </div>
