@@ -1,17 +1,10 @@
-import themeReducer from './themeReducer';
-import rtlReducer from './rtlReducer';
-import sidebarReducer from './sidebarReducer';
-import cryptoTableReducer from './cryptoTableReducer';
-import newOrderTableReducer from './newOrderTableReducer';
-import todoReducer from './todoReducer';
-import authReducer from './authReducer';
-
-export {
-  themeReducer,
-  rtlReducer,
-  sidebarReducer,
-  cryptoTableReducer,
-  newOrderTableReducer,
-  todoReducer,
-  authReducer
-};
+export { default as cryptoTable } from './cryptoTableReducer';
+export { default as user } from './loginReducer';
+export { default as register } from './registerReducer';
+export { default as newOrderTable } from './newOrderTableReducer';
+export { default as sidebar } from './sidebarReducer';
+export { default as theme } from './themeReducer';
+export { default as todo } from './todoReducer';
+export { default as rtl } from './rtlReducer';
+export { default as invoices } from './invoicesReducer';
+export { default as invoiceDetail } from './invoiceDetailReducer';

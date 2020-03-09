@@ -14,7 +14,7 @@ import {
   theme,
   invoices,
   invoiceDetail
-} from './reducers';
+} from '../reducers';
 
 import appSagas from './app/appSagas';
 
