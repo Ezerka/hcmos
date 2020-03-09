@@ -6,7 +6,7 @@ import SidebarContent from './SidebarContent';
 import { SidebarProps } from '../../../shared/prop-types/ReducerProps';
 import firebase from '../../../config/firebase';
 import { useDispatch } from 'react-redux';
-import { signOutUser } from '../../../redux/actions/authActions';
+import { signOutUser } from '../../../redux/actions/loginActions';
 import { history } from '../../../redux/store';
 
 const Sidebar = ({
