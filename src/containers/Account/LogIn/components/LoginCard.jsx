@@ -6,6 +6,7 @@ import { history } from '../../../redux/store';
 import { loginError, loginSuccess } from '../../../redux/actions/authActions';
 import Loading from '../Loading';
 import firebase from '../../../config/firebase';
+import { loginUser } from '../../../containers/Account/LogIn/loginThunk';
 
 const LoginCard = () => {
   const dispatch = useDispatch();
@@ -14,12 +15,14 @@ const LoginCard = () => {
 
   const onSubmitFireBase = ({ email, password }) => {
     event.preventDefault();
+    dispatch(loginUser(email, password, setLoading, setError));
     setLoading(true);
     setError('');
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(res => {
+      .then(async res => {
+        // const user = await fetchCustomer();
         dispatch(loginSuccess({ name: res.user.email, uid: res.user.uid }));
         setLoading(false);
         history.push('/home');

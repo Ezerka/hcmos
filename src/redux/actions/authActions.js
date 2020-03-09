@@ -1,19 +1,28 @@
 export const AUTHENTICATE_ERROR_AUTH = 'AUTHENTICATE_ERROR_AUTH';
 
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_USER_LOADING = 'LOGIN_USER_LOADING';
+export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
+export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';
 export const LOGOUT = 'LOGOUT';
 
-export const loginSuccess = response => {
+export const loginUserSuccess = response => {
   return {
-    type: LOGIN_SUCCESS,
+    type: LOGIN_USER_SUCCESS,
     payload: response
   };
 };
-export function loginError(error) {
+
+export const loginUserLoading = () => {
   return {
-    type: LOGIN_ERROR,
-    payload: error
+    type: LOGIN_USER_LOADING
+  };
+};
+
+export function loginUserError(error) {
+  console.log('Action: ', error);
+  return {
+    type: LOGIN_USER_ERROR,
+    error: error
   };
 }
 

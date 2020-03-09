@@ -20,14 +20,14 @@ class Register extends PureComponent {
     loading: false
   };
 
-  registerFireBase = user => {
+  registerUser = user => {
     const { history } = this.props;
     this.setState({ loading: true });
     firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
       .then(async response => {
-        await createUser({ ...user, objectId: response.user.uid });
+        await createUser({ ...user, uid: response.user.uid });
         this.setState({ loading: false });
         history.push('/home');
       })
@@ -58,10 +58,7 @@ class Register extends PureComponent {
                 </h3>
               </div>
             </div>
-            <RegisterForm
-              onSubmit={this.registerFireBase}
-              errorMessage={error}
-            />
+            <RegisterForm onSubmit={this.registerUser} errorMessage={error} />
             <div className="account__have-account">
               <p>
                 Already have an account? <Link to="/login">Login</Link>

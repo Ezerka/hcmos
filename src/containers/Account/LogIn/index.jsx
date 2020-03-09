@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginCard from '../../../shared/components/login/LoginCard';
+import LoginCard from './components/LoginCard';
 
 const LogIn = () => (
   <div className="account account--not-photo">

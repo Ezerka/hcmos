@@ -1,28 +1,31 @@
 import {
-  AUTHENTICATE_ERROR_AUTH,
-  LOGIN_ERROR,
-  LOGIN_SUCCESS,
+  LOGIN_USER_ERROR,
+  LOGIN_USER_LOADING,
+  LOGIN_USER_SUCCESS,
   LOGOUT
 } from '../actions/authActions';
-import { history } from '../store';
 
 const initialState = {
-  name: 'User',
-  avatar: '',
-  uid: null
+  name: '',
+  custId: null,
+  uid: null,
+  loading: false,
+  error: ''
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_SUCCESS:
+    case LOGIN_USER_LOADING:
+      return { loading: true };
+    case LOGIN_USER_SUCCESS:
       return {
-        ...state,
         name: action.payload.name,
         avatar: action.payload.avatar,
-        uid: action.payload.uid
+        uid: action.payload.uid,
+        loading: false
       };
-    case LOGIN_ERROR:
-      return { error: action.payload.error };
+    case LOGIN_USER_ERROR:
+      return { error: action.error };
     case LOGOUT:
       return initialState;
     default:

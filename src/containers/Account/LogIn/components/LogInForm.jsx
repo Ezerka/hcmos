@@ -8,8 +8,8 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as firebase from 'firebase/app';
 import { Alert, Button } from 'reactstrap';
-import renderCheckBoxField from '../form/CheckBox';
-import validate from '../../../containers/Form/FormValidation/components/validate';
+import renderCheckBoxField from '../../../../shared/components/form/CheckBox';
+import validate from '../../../Form/FormValidation/components/validate';
 
 const renderField = ({
   input,
@@ -65,7 +65,6 @@ class LogInForm extends PureComponent {
     return (
       <Form className="form login-form" onSubmit={handleSubmit}>
         <Alert color="danger" isOpen={!!errorMessage || !!errorMsg}>
-          {errorMessage}
           {errorMsg}
         </Alert>
         <div className="form__form-group">

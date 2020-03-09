@@ -1,20 +1,15 @@
-import firebase, { db } from '../../../config/firebase';
+import axios from '../../../config/axios';
 
 export const createUser = async data => {
   const user = {
-    userName: data.username,
+    name: data.username,
     email: data.email,
-    phoneNumber: data.phonenumber,
-    objectId: data.objectId
+    number: data.phonenumber,
+    uid: data.uid
   };
-  const increment = firebase.firestore.FieldValue.increment(1);
-
-  const statsRef = await db.collection('--stats--').doc('customers');
-  const userRef = await db.collection('users').doc(user.objectId.toString());
-
-  const batch = db.batch();
-  batch.set(userRef, user);
-  batch.set(statsRef, { count: increment }, { merge: true });
-
-  await batch.commit();
+  await axios({
+    method: 'post',
+    url: '/customers',
+    data: user
+  });
 };
