@@ -18,17 +18,26 @@ class Invoice extends React.Component {
         <CardBody className="invoice">
           <div className="invoice__head">
             <div className="invoice__head-left">
-              <h3>Invoice #{invoiceData.id}</h3>
+              <h3>Invoice #{invoiceData.data.invoice_number}</h3>
               <p className="invoice__date">
-                <Moment format={'ll'}>{invoiceData.createdAt}</Moment>
+                <Moment format={'ll'} unix>
+                  {invoiceData.created_at}
+                </Moment>
               </p>
-              <p>{get(invoiceData, 'customer.name')}</p>
-              <p>{get(invoiceData, 'customer.email')}</p>
-              <p>{get(invoiceData, 'customer.address')}</p>
+              <p>{get(invoiceData, 'data.customer.name')}</p>
+              <p>{get(invoiceData, 'data.customer.email')}</p>
+              <p>{get(invoiceData, 'data.customer.address.address1', '-')}</p>
+              <p>{get(invoiceData, 'data.customer.address.address2', '-')}</p>
+
+              <p>{get(invoiceData, 'data.customer.address.city', '-')}</p>
               <p>
-                {get(invoiceData, 'customer.city')},{' '}
-                {get(invoiceData, 'customer.countryCode')}{' '}
-                {get(invoiceData, 'customer.zip')}
+                {get(invoiceData, 'data.customer.address.state')},{' '}
+                {get(
+                  invoiceData,
+                  'data.customer.address.country',
+                  '-'
+                ).toUpperCase()}{' '}
+                {get(invoiceData, 'data.customer.address.zip', '-')}
               </p>
             </div>
             <div className="invoice__head-right">
@@ -53,22 +62,20 @@ class Invoice extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {invoiceData.items.map((i, index) => (
+              {invoiceData.data.items.map((i, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{i.berthNumber}</td>
-                  <td>₹{i.costPerHour}</td>
-                  <td>{i.hoursStayed}</td>
-                  <td>₹{i.costPerHour * i.hoursStayed}</td>
+                  <td>{i.description}</td>
+                  <td>₹{i.amount / 100}</td>
+                  <td>{i.quantity}</td>
+                  <td>₹{(i.amount * i.quantity) / 100}</td>
                 </tr>
               ))}
             </tbody>
           </Table>
           <div className="invoice__total">
-            <p>Sub - Total amount: ₹{invoiceData.subTotalAmount}</p>
-            <p>VAT: ₹{invoiceData.vat}</p>
             <p className="invoice__grand-total">
-              Grand Total: ₹{invoiceData.subTotalAmount + invoiceData.vat}
+              Grand Total: ₹{invoiceData.data.amount / 100}
             </p>
           </div>
         </CardBody>

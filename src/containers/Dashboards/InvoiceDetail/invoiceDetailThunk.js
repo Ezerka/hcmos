@@ -1,4 +1,4 @@
-import { db } from '../../../config/firebase';
+import axios from '../../../config/axios';
 import {
   invoiceDetailFetchError,
   invoiceDetailFetchRequest,
@@ -6,16 +6,15 @@ import {
 } from '../../../redux/actions/invoiceDetailActions';
 
 export const getInvoiceDetail = invoiceId => async dispatch => {
-  try {
-    dispatch(invoiceDetailFetchRequest());
-    const response = await db
-      .collection('invoices')
-      .doc(invoiceId)
-      .get();
-    console.log(response.data());
-    dispatch(invoiceDetailFetchSuccess(response.data()));
-  } catch (e) {
-    console.log(e.message);
-    dispatch(invoiceDetailFetchError(e.message));
-  }
+  dispatch(invoiceDetailFetchRequest());
+  axios({
+    method: 'get',
+    url: `/invoices/${invoiceId}`
+  })
+    .then(response => {
+      dispatch(invoiceDetailFetchSuccess(response.data));
+    })
+    .catch(err => {
+      dispatch(invoiceDetailFetchError(err));
+    });
 };

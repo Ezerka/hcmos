@@ -15,6 +15,23 @@ const InvoiceDetail = props => {
 
   const dispatch = useDispatch();
 
+  const makePayment = () => {
+    const options = {
+      key: 'rzp_test_uK9telCgOeSCRY',
+      currency: 'INR',
+      order_id: invoiceDetailData.data.order_id,
+      handler: function(response, error) {
+        console.log(response);
+        alert(response);
+      },
+      theme: {
+        color: '#4359f5'
+      }
+    };
+    const razorpayInstance = new Razorpay({ ...options });
+    razorpayInstance.open();
+  };
+
   const componentRef = useRef();
 
   useEffect(() => {
@@ -26,6 +43,8 @@ const InvoiceDetail = props => {
   ) : state === 'error' ? (
     <>Error: {error.message}</>
   ) : (
+    // <>{console.log('Got the data', invoiceDetailData)}test</>
+
     <Container className="dashboard">
       <Row>
         <Col md={12} lg={12}>
@@ -41,11 +60,7 @@ const InvoiceDetail = props => {
           )}
           content={() => componentRef.current}
         />
-        <Button
-          color={'success'}
-          variant={'contained'}
-          onClick={() => history.push(`/invoices/${invoiceId}/payment`)}
-        >
+        <Button color={'success'} variant={'contained'} onClick={makePayment}>
           Proceed to payment
         </Button>
       </ButtonToolbar>
