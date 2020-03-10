@@ -1,5 +1,9 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+if (process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = 'http://localhost:3000';
+} else if (process.env.NODE_ENV === 'production') {
+  axios.defaults.baseURL = 'https://adani-invoicing.herokuapp.com';
+}
 
 export default axios;
