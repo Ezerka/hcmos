@@ -40,8 +40,7 @@ const Invoices = () => {
     rowsPerPageOptions: [15, 20, 30],
     download: false,
     viewColumns: false,
-    onRowClick: handleRowClick,
-    responsive: 'scrollFullHeight'
+    onRowClick: handleRowClick
   };
 
   const columns = [
@@ -52,14 +51,25 @@ const Invoices = () => {
         filter: false,
         customBodyRender: value => {
           return (
-            <Moment format={'DD/MM/YYYY'} unix>
-              {value}
-            </Moment>
+            <p>
+              <Moment format={'DD/MM/YYYY'} unix>
+                {value}
+              </Moment>
+            </p>
           );
         }
       }
     },
-    'Invoice',
+    {
+      name: 'invoive_number',
+      label: 'Invoice Number',
+      options: {
+        filter: false,
+        customBodyRender: value => {
+          return <p>{value}</p>;
+        }
+      }
+    },
     {
       name: 'status',
       label: 'Status',
@@ -77,9 +87,11 @@ const Invoices = () => {
         filter: false,
         customBodyRender: value => {
           return (
-            <Moment format={'DD/MM/YYYY'} unix>
-              {value}
-            </Moment>
+            <p>
+              <Moment format={'DD/MM/YYYY'} unix>
+                {value}
+              </Moment>
+            </p>
           );
         }
       }
@@ -90,7 +102,7 @@ const Invoices = () => {
       options: {
         filter: false,
         customBodyRender: value => {
-          return <>₹{value / 100}</>;
+          return <p>₹{value / 100}</p>;
         }
       }
     },
@@ -100,7 +112,7 @@ const Invoices = () => {
       options: {
         filter: false,
         customBodyRender: value => {
-          return <>₹{value / 100}</>;
+          return <p>₹{value / 100}</p>;
         }
       }
     },
@@ -110,7 +122,7 @@ const Invoices = () => {
       options: {
         filter: false,
         customBodyRender: value => {
-          return <>₹{value / 100}</>;
+          return <p>₹{value / 100}</p>;
         }
       }
     }
