@@ -6,30 +6,24 @@ import { history } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../shared/components/Loading';
 import { getInvoices } from './invoicesThunk';
+import { handleUndefined } from '../../../shared/components/Beautifier';
 import { get } from 'lodash';
 
 const beautifyInvoice = invoice => {
   return [
-    handleUndefined(invoice.createdAt, '-'),
-    handleUndefined(invoice.id, '-'),
-    handleUndefined(get(invoice, 'customer.name'), '-'),
-    handleUndefined(invoice.status, '-'),
-    handleUndefined(invoice.dueDate, '-'),
-    handleUndefined(invoice.totalAmount, '-'),
-    handleUndefined(invoice.balanceDue, '-')
+    handleUndefined(invoice.paymentData.created_at, '-'),
+    handleUndefined(invoice.paymentData.invoice_number, '-'),
+    handleUndefined(invoice.paymentData.status, '-'),
+    handleUndefined(invoice.paymentData.expire_by, '-'),
+    handleUndefined(invoice.paymentData.amount, '-'),
+    handleUndefined(invoice.paymentData.amount_paid, '-'),
+    handleUndefined(invoice.paymentData.amount_due)
   ];
-};
-
-const handleUndefined = (data, character) => {
-  if (character) {
-    return data || character;
-  }
-  return data || '';
 };
 
 const Invoices = () => {
   const { state, invoicesData, error } = useSelector(state => state.invoices);
-  const { uid } = useSelector(state => state.user);
+  const { custId } = useSelector(state => state.user);
   const handleRowClick = async (rowData, rowMeta) => {
     console.log(invoicesData[rowMeta.dataIndex]);
     history.push(`/invoices/${invoicesData[rowMeta.dataIndex].objectId}`);
@@ -37,8 +31,8 @@ const Invoices = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getInvoices(uid));
-  }, [dispatch]);
+    dispatch(getInvoices(custId));
+  }, []);
 
   const tableOptions = {
     filterType: 'dropdown',
@@ -59,25 +53,69 @@ const Invoices = () => {
       options: {
         filter: false,
         customBodyRender: value => {
-          return <Moment format={'DD/MM/YYYY'}>{value}</Moment>;
+          return (
+            <Moment format={'DD/MM/YYYY'} unix>
+              {value}
+            </Moment>
+          );
         }
       }
     },
     'Invoice',
-    'Customer Name',
-    'Status',
+    {
+      name: 'status',
+      label: 'Status',
+      options: {
+        filter: false,
+        customBodyRender: value => {
+          return <p style={{ textTransform: 'capitalize' }}>{value}</p>;
+        }
+      }
+    },
     {
       name: 'dueDate',
       label: 'Due Date',
       options: {
         filter: false,
         customBodyRender: value => {
-          return <Moment format={'DD/MM/YYYY'}>{value}</Moment>;
+          return (
+            <Moment format={'DD/MM/YYYY'} unix>
+              {value}
+            </Moment>
+          );
         }
       }
     },
-    'Amount',
-    'Balance Due'
+    {
+      name: 'amount',
+      label: 'Amount',
+      options: {
+        filter: false,
+        customBodyRender: value => {
+          return <>₹{value / 100}</>;
+        }
+      }
+    },
+    {
+      name: 'amount_paid',
+      label: 'Amount Paid',
+      options: {
+        filter: false,
+        customBodyRender: value => {
+          return <>₹{value / 100}</>;
+        }
+      }
+    },
+    {
+      name: 'amount_due',
+      label: 'Amount Due',
+      options: {
+        filter: false,
+        customBodyRender: value => {
+          return <>₹{value / 100}</>;
+        }
+      }
+    }
   ];
 
   return (
