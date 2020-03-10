@@ -7,26 +7,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../shared/components/Loading';
 import { getInvoices } from './invoicesThunk';
 import { handleUndefined } from '../../../shared/components/Beautifier';
-import { get } from 'lodash';
 
 const beautifyInvoice = invoice => {
   return [
-    handleUndefined(invoice.paymentData.created_at, '-'),
-    handleUndefined(invoice.paymentData.invoice_number, '-'),
-    handleUndefined(invoice.paymentData.status, '-'),
-    handleUndefined(invoice.paymentData.expire_by, '-'),
-    handleUndefined(invoice.paymentData.amount, '-'),
-    handleUndefined(invoice.paymentData.amount_paid, '-'),
-    handleUndefined(invoice.paymentData.amount_due)
+    handleUndefined(invoice.created_at, '-'),
+    handleUndefined(invoice.invoice_number, '-'),
+    handleUndefined(invoice.status, '-'),
+    handleUndefined(invoice.expire_by, '-'),
+    handleUndefined(invoice.amount, '-'),
+    handleUndefined(invoice.amount_paid, '-'),
+    handleUndefined(invoice.amount_due)
   ];
 };
 
 const Invoices = () => {
   const { state, invoicesData, error } = useSelector(state => state.invoices);
-  const { custId } = useSelector(state => state.user);
+  const { custId } = useSelector(state => state.user.data);
   const handleRowClick = async (rowData, rowMeta) => {
-    console.log(invoicesData[rowMeta.dataIndex]);
-    history.push(`/invoices/${invoicesData[rowMeta.dataIndex].objectId}`);
+    history.push(`/invoices/${invoicesData[rowMeta.dataIndex].data.invoiceId}`);
   };
   const dispatch = useDispatch();
 
@@ -133,7 +131,7 @@ const Invoices = () => {
                 options={tableOptions}
                 columns={columns}
                 data={invoicesData.map(invoice => {
-                  return beautifyInvoice(invoice);
+                  return beautifyInvoice(invoice.data);
                 })}
               />
             </Col>
