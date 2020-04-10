@@ -1,4 +1,4 @@
-## Adani-Invocing
+## HCMOS
 To run this first you have to the Nodejs, Yarn installed on the system
 
 ### Installation Steps
